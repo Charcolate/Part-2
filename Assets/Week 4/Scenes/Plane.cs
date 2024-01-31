@@ -14,6 +14,7 @@ public class Plane : MonoBehaviour
     public float speed = 1;
     public AnimationCurve landing;
     float landingTimer;
+
     Vector3 randomPosition;
     float randomRoation;
     public List<Sprite> sprite;
@@ -55,7 +56,6 @@ public class Plane : MonoBehaviour
 
     void Update()
     {
-
         if (Input.GetKey(KeyCode.Space))
         {
             landingTimer += 0.1f * Time.deltaTime;
@@ -81,6 +81,12 @@ public class Plane : MonoBehaviour
                 lineRenderer.positionCount--;
             }
         }
+
+        Vector2 screenPosition = Camera.main.WorldToScreenPoint (transform.position);
+        if(screenPosition.y>Screen.height || screenPosition.y < 0)
+        {
+            Destroy (gameObject);
+        }
     }
 
     void OnMouseDown()
@@ -103,5 +109,31 @@ public class Plane : MonoBehaviour
             lastPosition = newPosition;
         }
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = Color.red;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        float dist = Vector3.Distance(currentPosition, collision.transform.position);
+        if (dist <= 5)
+        {
+            Destroy(gameObject);
+            Debug.Log("Bam!");
+        }
+    }
+
+    private void OnTriggerExit2D (Collider2D collision)
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = Color.white;
+        }
     }
 }
