@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -39,7 +38,7 @@ public class Plane : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprite[Random.Range(0, sprite.Count)];
         transform.position = randomPosition;
-        transform.rotation = quaternion.Euler(0, 0, randomRoation);
+        transform.rotation = Quaternion.Euler(0, 0, randomRoation);
     }
 
     void FixedUpdate()
