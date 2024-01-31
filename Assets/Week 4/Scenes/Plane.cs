@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Plane : MonoBehaviour
 {
@@ -13,14 +15,31 @@ public class Plane : MonoBehaviour
     public float speed = 1;
     public AnimationCurve landing;
     float landingTimer;
+    Vector3 randomPosition;
+    float randomRoation;
+    public List<Sprite> sprite;
+    SpriteRenderer spriteRenderer;
+
 
     void Start()
     {
+        randomPosition.x = Random.Range(-5, 5);
+        randomPosition.y = Random.Range(-5, 5);
+        randomPosition.z = 0;
+        randomRoation = Random.Range(0, 360);
+        speed = Random.Range(1f, 3f);
+
+
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 1;
         lineRenderer.SetPosition(0, transform.position);
 
         rb = GetComponent<Rigidbody2D>();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = sprite[Random.Range(0, sprite.Count)];
+        transform.position = randomPosition;
+        transform.rotation = quaternion.Euler(0, 0, randomRoation);
     }
 
     void FixedUpdate()

@@ -6,25 +6,27 @@ using UnityEngine;
 public class spawnnewplane : MonoBehaviour
 {
     public GameObject planesPrefab;
-
-    private float timer;
+    public Transform Spawn;
+    private float timer = 0f;
     private float lastSpawn;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer = Time.deltaTime;
+        timer += Time.deltaTime;
 
-        if (timer >= lastSpawn + Random.Range(1, 5))
+        if (timer >= lastSpawn)
         { 
-            Instantiate(planesPrefab, transform.position, transform.rotation);
-            lastSpawn = timer;
+            lastSpawn = Random.Range(1f, 5f);
+            timer = 0f;
+            Instantiate(planesPrefab);
         }
     }
 }
+
