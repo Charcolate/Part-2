@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UIElements;
 
 public class Plane : MonoBehaviour
@@ -19,6 +20,10 @@ public class Plane : MonoBehaviour
     float randomRoation;
     public List<Sprite> sprite;
     SpriteRenderer spriteRenderer;
+
+    public float score = 0f;
+    public GameObject runwayObject;
+    private bool hasLanded = false;
 
 
     void Start()
@@ -87,11 +92,20 @@ public class Plane : MonoBehaviour
         {
             Destroy (gameObject);
         }
+
+        Collider2D runwayCollider = runwayObject.GetComponent<Collider2D>();
+        if (runwayCollider != null && runwayCollider.OverlapPoint(transform.position))
+        {
+            hasLanded = true;
+            UpdateScore();
+        }
+
     }
 
     void OnMouseDown()
     {
         points = new List<Vector2>();
+        lastPosition = Vector2.zero;
         Vector2 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         points.Add(newPosition);
         lineRenderer.positionCount = 1;
@@ -122,8 +136,9 @@ public class Plane : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         float dist = Vector3.Distance(currentPosition, collision.transform.position);
-        if (dist <= 5)
+        if (dist <= 5 && !hasLanded)
         {
+            hasLanded = true;
             Destroy(gameObject);
             Debug.Log("Bam!");
         }
@@ -135,5 +150,11 @@ public class Plane : MonoBehaviour
         {
             spriteRenderer.color = Color.white;
         }
+    }
+
+    void UpdateScore()
+    {
+        score += 10;
+        Debug.Log("Score: " + score);
     }
 }
