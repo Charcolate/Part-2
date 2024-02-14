@@ -5,27 +5,25 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public float maxHealth = 5;
+    public float health;
     public float currentHealth;
-
 
     public Slider slider;
 
     void Start()
     {
-        currentHealth = maxHealth; 
-        UpdateHealthBar(); 
+        
     }
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+        slider.value -= damage;
+        PlayerPrefs.SetFloat("Health", slider.value);
+        PlayerPrefs.Save();
     }
 
-    void UpdateHealthBar()
+    public void CheckHealth()
     {
-        slider.value = currentHealth;
+        slider.value = PlayerPrefs.GetFloat("Health", slider.value);
     }
-
 }
