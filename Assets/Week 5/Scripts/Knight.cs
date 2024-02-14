@@ -13,7 +13,7 @@ public class Knight : MonoBehaviour
     public float speed = 3;
     Animator animator;
     bool clickingSelf = false;
-    float health;
+    public float health;
     float maxHealth = 5;
     bool isDead = false;
 
@@ -22,7 +22,7 @@ public class Knight : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        health = maxHealth;
+        health = PlayerPrefs.GetFloat("KnightHealth", maxHealth);
     }
 
     private void FixedUpdate()
@@ -67,6 +67,8 @@ public class Knight : MonoBehaviour
     {
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
+        PlayerPrefs.SetFloat("KnightHealth", health);
+        PlayerPrefs.Save();
         if (health <= 0)
         {
             isDead = true;
