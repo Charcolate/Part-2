@@ -37,8 +37,19 @@ public class CharacterMovement : MonoBehaviour
             destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
 
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
+        if (movement.x != 0 || movement.y != 0)
+        {
+            animator.SetFloat("Horizontal", movement.x);
+            animator.SetFloat("Vertical", movement.y);
+        }
+
         animator.SetFloat("Speed", movement.sqrMagnitude);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        collision.gameObject.SendMessage("You Touched the Wall", SendMessageOptions.DontRequireReceiver);
+        rb.velocity = Vector2.zero;
+        movement = Vector2.zero;
     }
 }
