@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Get through the maze without dying from the poisonous wall
+  m_text: Get to the other side of the map without dying!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3065,9 +3065,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  startposition: {fileID: 839582275}
-  endposition: {fileID: 2012330277}
-  lerptime: 0
+  start: {fileID: 839582275}
+  end: {fileID: 2012330277}
+  lerp: 0
   interpolation: 0
   sr: {fileID: 2065647009}
 --- !u!50 &2065647013

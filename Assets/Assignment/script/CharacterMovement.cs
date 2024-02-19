@@ -34,8 +34,13 @@ public class CharacterMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            Vector3 mousePosScreen = Input.mousePosition;
+
+            Vector3 mousePosWorld = Camera.main.ScreenToWorldPoint(mousePosScreen);
+            destination = new Vector2(mousePosWorld.x, mousePosWorld.y);
         }
+
 
         if (movement.x != 0 || movement.y != 0)
         {
@@ -48,8 +53,10 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.gameObject.SendMessage("You Touched the Wall", SendMessageOptions.DontRequireReceiver);
-        rb.velocity = Vector2.zero;
-        movement = Vector2.zero;
+        if (collision.CompareTag("Wall"))
+        {
+            collision.gameObject.SendMessage("YouTouchedTheWall", SendMessageOptions.DontRequireReceiver);
+        }
     }
+
 }

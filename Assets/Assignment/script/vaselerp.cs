@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartScreenLerp : MonoBehaviour
+public class vaselerp : MonoBehaviour
 {
     public AnimationCurve animationcurve;
     public Transform start;
@@ -25,5 +25,5 @@ public class StartScreenLerp : MonoBehaviour
         interpolation = animationcurve.Evaluate(lerp);
         transform.position = Vector3.Lerp(start.position, end.position, interpolation);
         lerp = lerp + Time.deltaTime;
-    }   
+    }
 }
