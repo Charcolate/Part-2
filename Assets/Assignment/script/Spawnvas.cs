@@ -7,10 +7,9 @@ using UnityEngine;
 public class Spawnvas : MonoBehaviour
 {
     public GameObject vasePrefab;
-    public float spawnRangeX = 10f;
-    public float spawnRangeY = 10f;
+    public float spawnRangeX = 5f;
+    public float spawnRangeY = 5f;
     public float spawnInterval = 2f;
-    public float dropThresholdY = -5f;
 
     private float timer;
 
@@ -36,10 +35,5 @@ public class Spawnvas : MonoBehaviour
         Vector3 spawnPosition = new Vector3(randomX, spawnRangeY, 0f) + transform.position;
 
         GameObject vase = Instantiate(vasePrefab, spawnPosition, Quaternion.identity);
-
-        if (vase.transform.position.y > dropThresholdY)
-        {
-            vase.transform.position = new Vector3(vase.transform.position.x, dropThresholdY, vase.transform.position.z);
-        }
     }
 }
