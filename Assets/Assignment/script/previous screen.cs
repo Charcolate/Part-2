@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class previousscreen : MonoBehaviour
 {
+    //load the previous scene from build settings
     public void LoadBeforescene()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class NextScene : MonoBehaviour
 {
+    //load the next screen in the build settings
     public void LoadNextscene()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;

@@ -6,9 +6,8 @@ using UnityEngine;
 
 public class Spawnvas : MonoBehaviour
 {
+    //get a class and components
     public GameObject vasePrefab;
-    public float spawnRangeX = 5f;
-    public float spawnRangeY = 5f;
     public float spawnInterval = 2f;
 
     private float timer;
@@ -20,6 +19,7 @@ public class Spawnvas : MonoBehaviour
 
     void Update()
     {
+        //set the timer for spawning
         timer += Time.deltaTime;
 
         if (timer >= spawnInterval)
@@ -31,9 +31,17 @@ public class Spawnvas : MonoBehaviour
 
     void SpawnVase()
     {
-        float randomX = Random.Range(-spawnRangeX, spawnRangeX);
-        Vector3 spawnPosition = new Vector3(randomX, spawnRangeY, 0f) + transform.position;
+        //Get screen boundaries in world coordinates
+        Vector2 bottomLeft = Camera.main.ScreenToWorldPoint(Vector3.zero);
+        Vector2 topRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
 
-        GameObject vase = Instantiate(vasePrefab, spawnPosition, Quaternion.identity);
+        //generate the spawn position
+        Vector2 spawnPosition1 = new Vector2(Random.Range(bottomLeft.x, topRight.x), Random.Range(bottomLeft.y, topRight.y)); // Changed
+        Vector2 spawnPosition2 = new Vector2(Random.Range(bottomLeft.x, topRight.x), Random.Range(bottomLeft.y, topRight.y)); // Changed
+
+        //Spawn vases at the random positions
+        Instantiate(vasePrefab, spawnPosition1, Quaternion.identity); // Changed
+        Instantiate(vasePrefab, spawnPosition2, Quaternion.identity); // Changed
+
     }
 }
