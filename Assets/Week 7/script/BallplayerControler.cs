@@ -13,14 +13,15 @@ public class BallplayerControler : MonoBehaviour
     Vector2 direction;
     public static Footballplayer CurrentSelection { get; private set; }
 
-    public float score;
-    TextMeshProUGUI scoreText;
+    public static float score = 0;
+    public TextMeshProUGUI scoreText;
+    public float prevScore;
 
     void Start()
     {
-        scoreText = GameObject.Find("YourTextMeshProObjectName").GetComponent<TextMeshProUGUI>();
+        prevScore = score;
+        scoreText.SetText("score:" + score);
     }
-
 
     public static void SetCurrentSelection (Footballplayer player)
     {
@@ -57,8 +58,16 @@ public class BallplayerControler : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            direction = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition)-(Vector2)CurrentSelection.transform.position).normalized * charge;
+            direction = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)CurrentSelection.transform.position).normalized * charge;
+        }
+        if (score != prevScore)
+        {
+            ScoreUpdate();
+            prevScore = score;
         }
     }
-
+ private void ScoreUpdate()
+    {
+        scoreText.SetText("score:" + score);
+    }
 }

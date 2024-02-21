@@ -14,12 +14,10 @@ public class Ball : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    private void OnTriggerEnter(Collider collide)
+    private void OnTriggerEnter2D(Collider2D collision) 
     {
-        if (collide.CompareTag("Goal"))
-        {
+            BallplayerControler.score++;
             transform.position = kickoffSpot.position;
             rb.velocity = Vector2.zero;
-        }
     }
 }

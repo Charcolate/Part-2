@@ -496,7 +496,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -507,7 +507,7 @@ EdgeCollider2D:
   - {x: 0.76431394, y: 6.5682406}
   - {x: 2.5693707, y: 6.5720835}
   - {x: 2.6060944, y: 4.970147}
-  - {x: -2.5467486, y: 4.9543304}
+  - {x: 2.5697799, y: 5.0387616}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -3616,7 +3616,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chargeSlider: {fileID: 1622606235}
   maxCharge: 1
-  score: 0
+  scoreText: {fileID: 1688958266}
+  prevScore: 0
 --- !u!4 &1040889512
 Transform:
   m_ObjectHideFlags: 0
@@ -4147,7 +4148,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: '
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
