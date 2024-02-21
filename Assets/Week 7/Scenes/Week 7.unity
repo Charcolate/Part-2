@@ -3413,12 +3413,12 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 0.026488304, y: 5.4536767}
+  - {x: 0.52777064, y: 5.4894824}
   - {x: -9.443527, y: 5.5020156}
   - {x: -9.439953, y: -4.5394597}
   - {x: 9.451193, y: -4.5180798}
   - {x: 9.565937, y: 5.464314}
-  - {x: 0.006952882, y: 5.4609685}
+  - {x: -2.2667208, y: 5.5146775}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -3616,7 +3616,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chargeSlider: {fileID: 1622606235}
   maxCharge: 1
-  scoreText: {fileID: 0}
+  score: 0
 --- !u!4 &1040889512
 Transform:
   m_ObjectHideFlags: 0
