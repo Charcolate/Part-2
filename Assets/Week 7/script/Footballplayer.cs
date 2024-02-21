@@ -7,28 +7,29 @@ using UnityEngine;
 public class Footballplayer : MonoBehaviour
 {
     public SpriteRenderer playerselect;
+    public Color selectColour;
+    public Color unselectedColour;
 
     void Start()
     {
-        if (playerselect != null)
-        {
-            playerselect.color = Color.red;
-        }
+        playerselect = GetComponent<SpriteRenderer>();
+        Selected(false);
     }
 
     private void OnMouseDown ()
     {
-        if (playerselect != null)
-        {
-            playerselect.color = Color.green; 
-        }
+        ControllerColliderHit.SetCurrentSelection(this);
     }
 
-    public void Select(bool isSelected)
+    public void Selected(bool isSelected)
     {
-        if (playerselect != null)
+        if (isSelected)
         {
-            playerselect.color = isSelected ? Color.green : Color.red;
+            playerselect.color = selectColour;
+        }
+        else
+        {
+            playerselect.color = unselectedColour;
         }
     }
 
